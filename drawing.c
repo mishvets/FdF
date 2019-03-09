@@ -34,6 +34,7 @@ t_line	*ft_drawline_init(t_xyz p1, t_xyz p2, t_point *all)
 	line->signY = line->y1 < line->y2 ? 1 : -1;
 	line->error = line->deltaX - line->deltaY;
 	return (line);
+
 }
 
 void	ft_drawline(t_xyz p1, t_xyz p2, t_point *all)
