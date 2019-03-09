@@ -23,7 +23,11 @@ LIB_DIR     := ./libft/
 
 # project source files
 
-SRC     	:= main.c validation.c drawing.c
+SRC     	+= main.c
+SRC     	+= validation.c
+SRC     	+= drawing.c
+SRC     	+= function.c
+SRC     	+= function1.c
 
 # project object files
 

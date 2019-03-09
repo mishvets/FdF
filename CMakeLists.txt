@@ -8,6 +8,6 @@ AUX_SOURCE_DIRECTORY(Libft LIBA)
 add_executable(FdF
         main.c
         ${LIBA}
-        fdf.h validation.c drawing.c)
+        fdf.h validation.c drawing.c function.c function1.c)
 
 link_libraries(./libft/libft.a)

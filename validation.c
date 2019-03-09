@@ -26,16 +26,13 @@ static void	ft_adddata(t_point **all, char **arr, int y)
 	t_data	*crawler;
 	int 	i;
 
-	i = 0;
+	i = -1;
 	if (!(new = (t_data *)malloc(sizeof(*new))))
 		exit(1);
 	if (!(new->row = (int *)malloc((*all)->nX * sizeof(int))))
 		exit(1);
-	while (i < (*all)->nX)
-	{
+	while (++i < (*all)->nX)
 		new->row[i] = ft_atoi(arr[i]);
-		++i;
-	}
 	ft_strdeli(arr, i);
 	new->y = y;
 	new->next = NULL;
@@ -74,7 +71,7 @@ static int	ft_valid(t_point **all, char **arr, char *line)
 		}
 		++i;
 	}
-	free(line);//?
+	free(line);
 	return (1);
 }
 
@@ -117,8 +114,6 @@ static int	ft_init(t_point **all)
 	(*all)->z_size = 10;
 	(*all)->color = ft_colorinit();
 	(*all)->color_pos = 0;
-//	if(!((*all)->crdn = (t_xyz *)malloc(sizeof((*all)->crdn) * (*all)->nX)))
-//		return(0);
 	return (1);
 }
 
@@ -128,17 +123,17 @@ int			ft_map(char *file, t_point **all)
 	char	*line;
 	char	**arr;
 	int 	y;
+	int 	c;
 
 	y = 0;
-//	(*all)->map = malloc(sizeof((*all)->map));
-//	(*all)->map->next = NULL;
 	(*all)->nX = -1;
 	if ((fd = open(file, O_RDONLY)) < 0)
 	{
 		ft_putstr("File error./n");
 		exit(1);
 	}
-	while (get_next_line(fd, &line) == 1)
+//	printf("%i\n", get_next_line(fd, &line));
+	while ((c = get_next_line(fd, &line)) == 1)
 	{
 		if (!(arr = ft_strsplit(line, ' ')))
 			exit(1);
@@ -148,9 +143,9 @@ int			ft_map(char *file, t_point **all)
 			exit(1);
 		}
 		ft_adddata(all, arr, y++);
-//		free(line);
 	}
-	free(line);
+	if (c != -1)
+		free(line);
 	(*all)->nY = y;
 	if(!(ft_init(all)))
 		exit(1);
