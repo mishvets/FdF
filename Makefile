@@ -18,7 +18,7 @@ NAME		:= fdf
 
 SRC_DIR     := ./
 OBJ_DIR     := ./
-INC_DIR     := ./
+INC_DIR     := ./incl/
 LIB_DIR     := ./libft/
 
 # project source files

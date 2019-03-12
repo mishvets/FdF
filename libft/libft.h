@@ -122,6 +122,7 @@ char				*ft_strupcase(char *str);
 char				*ft_strlowcase(char *str);
 char				*ft_itoa_base(int n, int base);
 int					ft_sqtr(int nb);
+void				ft_strdelarr(char **arr, size_t i);
 
 int					get_next_line(const int fd, char **line);
 

@@ -6,7 +6,7 @@
 /*   By: mshvets <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/03 17:28:26 by mshvets           #+#    #+#             */
-/*   Updated: 2019/01/03 17:28:29 by mshvets          ###   ########.fr       */
+/*   Updated: 2019/03/12 19:45:19 by mshvets          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 # define FDF_H
 
-# include "libft/libft.h"
+# include "../libft/libft.h"
 # include <mlx.h>
 # include <fcntl.h>
 # include <math.h>
@@ -24,28 +24,28 @@
 
 typedef struct		s_data
 {
-	int 			*row;
-	int 			y;
+	int				*row;
+	int				y;
 	struct s_data	*next;
 }					t_data;
 
 typedef struct		s_xyz
 {
-	double 			x;
-	double 			y;
-	double 			z;
+	double			x;
+	double			y;
+	double			z;
 }					t_xyz;
 
 typedef struct		s_point
 {
-	void 			*mlx_ptr;
+	void			*mlx_ptr;
 	void			*win_ptr;
-	int 			c_size;
-	int 			z_size;
+	int				c_size;
+	int				z_size;
 	int				start_x;
-	int 			start_y;
-	int 			nX;
-	int 			nY;
+	int				start_y;
+	int				nx;
+	int				ny;
 	double 			base_m[3][3];
 	double 			rotate_m[3][3];
 	double 			angl;
@@ -57,10 +57,10 @@ typedef struct		s_point
 
 typedef struct		s_line
 {
-	int				deltaX;
-	int				deltaY;
-	int				signX;
-	int				signY;
+	int				delta_x;
+	int				delta_y;
+	int				sign_x;
+	int				sign_y;
 	int				error;
 	int				error2;
 	int 			x1;
@@ -70,14 +70,14 @@ typedef struct		s_line
 }					t_line;
 
 int		ft_map(char *file, t_point **all);
-void	ft_rotateX(t_point **all, int sign);
-void	ft_rotateY(t_point **all, int sign);
-void	ft_rotateZ(t_point **all, int sign);
+void	ft_rotate_x(t_point **all, int key);
+void	ft_rotate_y(t_point **all, int key);
+void	ft_rotate_z(t_point **all, int key);
 void 	ft_draw(t_point **all);
 void	ft_clear(t_point **all);
 void	ft_color(t_point **all);
-void	ft_startpointX(t_point **all, int sign);
-void	ft_startpointY(t_point **all, int sign);
+void	ft_startpoint_x(t_point **all, int key);
+void	ft_startpoint_y(t_point **all, int key);
 void	ft_z(t_point **all, int sign);
 void	ft_case(t_point **all, int key);
 void	ft_error(int i);

@@ -10,40 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
-#include <stdio.h>
-
-void		ft_error(int i)
-{
-	if (i == 1)
-		ft_putstr("File error./n");
-	else if (i == 2)
-		ft_putstr("Not valid map\n");
-	exit (1);
-
-}
-
-static void	ft_strdeli(char **arr, size_t i)
-{
-	while (i-- > 0)
-		ft_strdel(&arr[i]);
-	free(arr);
-}
+#include "incl/fdf.h"
 
 static void	ft_adddata(t_point **all, char **arr, int y)
 {
 	t_data	*new;
 	t_data	*crawler;
-	int 	i;
+	int		i;
 
 	i = -1;
 	if (!(new = (t_data *)malloc(sizeof(*new))))
 		exit(1);
-	if (!(new->row = (int *)malloc((*all)->nX * sizeof(int))))
+	if (!(new->row = (int *)malloc((*all)->nx * sizeof(int))))
 		exit(1);
-	while (++i < (*all)->nX)
+	while (++i < (*all)->nx)
 		new->row[i] = ft_atoi(arr[i]);
-	ft_strdeli(arr, i);
+	ft_strdelarr(arr, i);
 	new->y = y;
 	new->next = NULL;
 	crawler = (*all)->map;
@@ -63,18 +45,18 @@ static int	ft_valid(t_point **all, char **arr, char *line)
 	int j;
 
 	i = 0;
-	if ((*all)->nX < 0)
-		(*all)->nX = (int)ft_cntwrd(line, ' ');
-	else if ((*all)->nX != (int)ft_cntwrd(line, ' '))
+	if ((*all)->nx < 0)
+		(*all)->nx = (int)ft_cntwrd(line, ' ');
+	else if ((*all)->nx != (int)ft_cntwrd(line, ' '))
 	{
 		ft_printf("Number elem in rows not constant %d/%d\n",
-				(*all)->nX, (int)ft_cntwrd(line, ' '));
+				(*all)->nx, (int)ft_cntwrd(line, ' '));
 		return (0);
 	}
-	while (i < (*all)->nX)
+	while (i < (*all)->nx)
 	{
 		j = 0;
-		while(arr[i][j])
+		while (arr[i][j])
 		{
 			if ((arr[i][j] < '0' || arr[i][j] > '9') && (arr[i][j] != '-'))
 				return (0);
@@ -86,11 +68,11 @@ static int	ft_valid(t_point **all, char **arr, char *line)
 	return (1);
 }
 
-int		*ft_colorinit(void)
+static int	*ft_colorinit(void)
 {
 	int *color;
 
-	if(!(color = (int *)malloc(sizeof(int) * 8)))
+	if (!(color = (int *)malloc(sizeof(int) * 8)))
 		return (0);
 	color[0] = 0xFFFFFF;
 	color[1] = 0x800080;
@@ -107,10 +89,10 @@ static int	ft_init(t_point **all)
 {
 	(*all)->start_x = WIDTH / 2;
 	(*all)->start_y = HEIGHT / 2;
-	if ((*all)->nX > (*all)->nY)
-		(*all)->c_size = 6 * HEIGHT / (8 * (*all)->nX);
+	if ((*all)->nx > (*all)->ny)
+		(*all)->c_size = 6 * HEIGHT / (8 * (*all)->nx);
 	else
-		(*all)->c_size = 6 * HEIGHT / (8 * (*all)->nY);
+		(*all)->c_size = 6 * HEIGHT / (8 * (*all)->ny);
 	(*all)->base_m[0][0] = 1;
 	(*all)->base_m[0][1] = 0;
 	(*all)->base_m[0][2] = 0;
@@ -133,11 +115,11 @@ int			ft_map(char *file, t_point **all)
 	int		fd;
 	char	*line;
 	char	**arr;
-	int 	y;
-	int 	c;
+	int		y;
+	int		c;
 
 	y = 0;
-	(*all)->nX = -1;
+	(*all)->nx = -1;
 	if ((fd = open(file, O_RDONLY)) < 0)
 		ft_error(1);
 	while ((c = get_next_line(fd, &line)) == 1)
@@ -149,10 +131,10 @@ int			ft_map(char *file, t_point **all)
 		ft_adddata(all, arr, y++);
 	}
 	if (c == -1)
-		exit (1);
+		ft_error(1);
 	free(line);
-	(*all)->nY = y;
-	if(!(ft_init(all)))
+	(*all)->ny = y;
+	if (!(ft_init(all)))
 		exit(1);
 	return (0);
 }

@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "incl/fdf.h"
 
-void	ft_startpointX(t_point **all, int key)
+void	ft_startpoint_x(t_point **all, int key)
 {
 	int	sign;
 
@@ -20,12 +20,12 @@ void	ft_startpointX(t_point **all, int key)
 		sign = 1;
 	else
 		sign = -1;
-	mlx_clear_window ((*all)->mlx_ptr, (*all)->win_ptr);
+	mlx_clear_window((*all)->mlx_ptr, (*all)->win_ptr);
 	(*all)->start_y = (*all)->start_y + sign * (*all)->c_size;
 	ft_draw(all);
 }
 
-void	ft_startpointY(t_point **all, int key)
+void	ft_startpoint_y(t_point **all, int key)
 {
 	int	sign;
 
@@ -33,7 +33,7 @@ void	ft_startpointY(t_point **all, int key)
 		sign = 1;
 	else
 		sign = -1;
-	mlx_clear_window ((*all)->mlx_ptr, (*all)->win_ptr);
+	mlx_clear_window((*all)->mlx_ptr, (*all)->win_ptr);
 	(*all)->start_x = (*all)->start_x + sign * (*all)->c_size;
 	ft_draw(all);
 }
@@ -46,8 +46,10 @@ void	ft_z(t_point **all, int key)
 		sign = 1;
 	else
 		sign = -1;
-	mlx_clear_window ((*all)->mlx_ptr, (*all)->win_ptr);
+	mlx_clear_window((*all)->mlx_ptr, (*all)->win_ptr);
 	(*all)->z_size = (*all)->z_size + sign * 5;
+	if ((*all)->z_size < 0)
+		(*all)->z_size = 0;
 	ft_draw(all);
 }
 
@@ -59,14 +61,16 @@ void	ft_case(t_point **all, int key)
 		sign = 1;
 	else
 		sign = -1;
-	mlx_clear_window ((*all)->mlx_ptr, (*all)->win_ptr);
+	mlx_clear_window((*all)->mlx_ptr, (*all)->win_ptr);
 	(*all)->c_size = (*all)->c_size + sign * 5;
+	if ((*all)->c_size < 0)
+		(*all)->c_size = 0;
 	ft_draw(all);
 }
 
 void	ft_color(t_point **all)
 {
-	mlx_clear_window ((*all)->mlx_ptr, (*all)->win_ptr);
+	mlx_clear_window((*all)->mlx_ptr, (*all)->win_ptr);
 	(*all)->color_pos = ((*all)->color_pos + 1) % 8;
 	ft_draw(all);
 }

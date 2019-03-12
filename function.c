@@ -5,16 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mshvets <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/09 22:12:37 by mshvets           #+#    #+#             */
-/*   Updated: 2019/03/09 22:12:41 by mshvets          ###   ########.fr       */
+/*   Created: 2019/03/12 19:25:08 by mshvets           #+#    #+#             */
+/*   Updated: 2019/03/12 19:25:12 by mshvets          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "incl/fdf.h"
 
-void     matrix_mul(double (*C)[3][3], double B[3][3])
+void	matrix_mul(double (*c)[3][3], double b[3][3])
 {
-	double		A[3][3];
+	double		a[3][3];
 	int			i;
 	int			j;
 	int			k;
@@ -24,7 +24,7 @@ void     matrix_mul(double (*C)[3][3], double B[3][3])
 	{
 		j = -1;
 		while (++j < 3)
-			A[i][j] = (*C)[i][j];
+			a[i][j] = (*c)[i][j];
 	}
 	i = 0;
 	while (i < 3)
@@ -33,15 +33,15 @@ void     matrix_mul(double (*C)[3][3], double B[3][3])
 		while (++j < 3)
 		{
 			k = -1;
-			(*C)[i][j] = 0;
+			(*c)[i][j] = 0;
 			while (++k < 3)
-				(*C)[i][j] += A[i][k] * B[k][j];
+				(*c)[i][j] += a[i][k] * b[k][j];
 		}
 		++i;
 	}
 }
 
-void	ft_rotateX(t_point **all, int key)
+void	ft_rotate_x(t_point **all, int key)
 {
 	int	sign;
 
@@ -49,7 +49,7 @@ void	ft_rotateX(t_point **all, int key)
 		sign = 1;
 	else
 		sign = -1;
-	mlx_clear_window ((*all)->mlx_ptr, (*all)->win_ptr);
+	mlx_clear_window((*all)->mlx_ptr, (*all)->win_ptr);
 	(*all)->angl = sign * (*all)->del_angl;
 	(*all)->rotate_m[0][0] = 1;
 	(*all)->rotate_m[0][1] = 0;
@@ -64,7 +64,7 @@ void	ft_rotateX(t_point **all, int key)
 	ft_draw(all);
 }
 
-void	ft_rotateY(t_point **all, int key)
+void	ft_rotate_y(t_point **all, int key)
 {
 	int	sign;
 
@@ -72,7 +72,7 @@ void	ft_rotateY(t_point **all, int key)
 		sign = 1;
 	else
 		sign = -1;
-	mlx_clear_window ((*all)->mlx_ptr, (*all)->win_ptr);
+	mlx_clear_window((*all)->mlx_ptr, (*all)->win_ptr);
 	(*all)->angl = sign * (*all)->del_angl;
 	(*all)->rotate_m[0][0] = cos((*all)->angl);
 	(*all)->rotate_m[0][1] = 0;
@@ -87,7 +87,7 @@ void	ft_rotateY(t_point **all, int key)
 	ft_draw(all);
 }
 
-void	ft_rotateZ(t_point **all, int key)
+void	ft_rotate_z(t_point **all, int key)
 {
 	int	sign;
 
@@ -95,7 +95,7 @@ void	ft_rotateZ(t_point **all, int key)
 		sign = 1;
 	else
 		sign = -1;
-	mlx_clear_window ((*all)->mlx_ptr, (*all)->win_ptr);
+	mlx_clear_window((*all)->mlx_ptr, (*all)->win_ptr);
 	(*all)->angl = sign * (*all)->del_angl;
 	(*all)->rotate_m[0][0] = cos((*all)->angl);
 	(*all)->rotate_m[0][1] = -sin((*all)->angl);
@@ -110,7 +110,7 @@ void	ft_rotateZ(t_point **all, int key)
 	ft_draw(all);
 }
 
-void ft_clear(t_point **all)
+void	ft_clear(t_point **all)
 {
-	mlx_clear_window ((*all)->mlx_ptr, (*all)->win_ptr);
+	mlx_clear_window((*all)->mlx_ptr, (*all)->win_ptr);
 }

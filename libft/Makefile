@@ -83,6 +83,7 @@ FUNCTIONS	+= ft_strupcase.c
 FUNCTIONS	+= ft_strlowcase.c
 FUNCTIONS	+= ft_itoa_base.c
 FUNCTIONS	+= ft_sqrt.c
+FUNCTIONS	+= ft_strdelarr.c
 FUNCTIONS	+= get_next_line.c
 FUNCTIONS	+= ft_printf.c
 FUNCTIONS	+= ft_strjoinl.c
