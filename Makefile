@@ -6,7 +6,7 @@
 #    By: mshvets <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/17 15:49:35 by mshvets           #+#    #+#              #
-#    Updated: 2018/12/17 15:50:18 by mshvets          ###   ########.fr        #
+#    Updated: 2019/03/12 20:00:21 by mshvets          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ LIB_DIR     := ./libft/
 
 # project source files
 
-SRC     	+= main.c
+SRC     	:= main.c
 SRC     	+= validation.c
 SRC     	+= drawing.c
 SRC     	+= function.c

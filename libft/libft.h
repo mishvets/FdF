@@ -6,13 +6,13 @@
 /*   By: mshvets <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 16:31:50 by mshvets           #+#    #+#             */
-/*   Updated: 2019/02/26 19:20:46 by mshvets          ###   ########.fr       */
+/*   Updated: 2019/03/12 19:52:51 by mshvets          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
+#ifndef LIBFT_H
 
-# define LIBFTPRINTF_H
+# define LIBFT_H
 # define BUFF_SIZE 32
 
 # include <unistd.h>

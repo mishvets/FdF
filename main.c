@@ -6,7 +6,7 @@
 /*   By: mshvets <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/03 11:51:44 by mshvets           #+#    #+#             */
-/*   Updated: 2019/01/03 11:51:46 by mshvets          ###   ########.fr       */
+/*   Updated: 2019/03/12 20:03:44 by mshvets          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,19 @@ void		ft_error(int i)
 static int	deal_key(int key, void *param)
 {
 	if (key == 53)
-	{
-		system("leaks fdf -q");
 		exit(0);
-	}
 	else if (key == 35)
 		ft_clear((t_point **)param);
 	else if (key == 86 || key == 89)
-		ft_rotate_x((t_point **) param, key);
+		ft_rotate_x((t_point **)param, key);
 	else if (key == 87 || key == 91)
-		ft_rotate_y((t_point **) param, key);
+		ft_rotate_y((t_point **)param, key);
 	else if (key == 88 || key == 92)
-		ft_rotate_z((t_point **) param, key);
+		ft_rotate_z((t_point **)param, key);
 	else if (key == 125 || key == 126)
-		ft_startpoint_x((t_point **) param, key);
+		ft_startpoint_x((t_point **)param, key);
 	else if (key == 123 || key == 124)
-		ft_startpoint_y((t_point **) param, key);
+		ft_startpoint_y((t_point **)param, key);
 	else if (key == 6 || key == 7)
 		ft_z((t_point **)param, key);
 	else if (key == 69 || key == 78)
@@ -81,6 +78,5 @@ int			main(int argc, char **argv)
 	ft_draw(&all);
 	mlx_hook(all->win_ptr, 2, 5, deal_key, &all);
 	mlx_loop(all->mlx_ptr);
-	system("leaks FdF -q");//
 	exit(0);
 }

@@ -6,7 +6,7 @@
 /*   By: mshvets <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/03 17:28:26 by mshvets           #+#    #+#             */
-/*   Updated: 2019/03/12 19:45:19 by mshvets          ###   ########.fr       */
+/*   Updated: 2019/03/12 19:56:34 by mshvets          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ typedef struct		s_point
 	int				start_y;
 	int				nx;
 	int				ny;
-	double 			base_m[3][3];
-	double 			rotate_m[3][3];
-	double 			angl;
-	double 			del_angl;
+	double			base_m[3][3];
+	double			rotate_m[3][3];
+	double			angl;
+	double			del_angl;
 	int				*color;
-	int 			color_pos;
+	int				color_pos;
 	t_data			*map;
 }					t_point;
 
@@ -63,23 +63,23 @@ typedef struct		s_line
 	int				sign_y;
 	int				error;
 	int				error2;
-	int 			x1;
-	int 			x2;
-	int 			y1;
-	int 			y2;
+	int				x1;
+	int				x2;
+	int				y1;
+	int				y2;
 }					t_line;
 
-int		ft_map(char *file, t_point **all);
-void	ft_rotate_x(t_point **all, int key);
-void	ft_rotate_y(t_point **all, int key);
-void	ft_rotate_z(t_point **all, int key);
-void 	ft_draw(t_point **all);
-void	ft_clear(t_point **all);
-void	ft_color(t_point **all);
-void	ft_startpoint_x(t_point **all, int key);
-void	ft_startpoint_y(t_point **all, int key);
-void	ft_z(t_point **all, int sign);
-void	ft_case(t_point **all, int key);
-void	ft_error(int i);
+int					ft_map(char *file, t_point **all);
+void				ft_rotate_x(t_point **all, int key);
+void				ft_rotate_y(t_point **all, int key);
+void				ft_rotate_z(t_point **all, int key);
+void				ft_draw(t_point **all);
+void				ft_clear(t_point **all);
+void				ft_color(t_point **all);
+void				ft_startpoint_x(t_point **all, int key);
+void				ft_startpoint_y(t_point **all, int key);
+void				ft_z(t_point **all, int sign);
+void				ft_case(t_point **all, int key);
+void				ft_error(int i);
+
 #endif
-//
