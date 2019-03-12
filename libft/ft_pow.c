@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-long int	ft_pow(int nb, unsigned int power)
+long double	ft_pow(long int nb, unsigned int power)
 {
 	if (power == 0)
 		return (1);

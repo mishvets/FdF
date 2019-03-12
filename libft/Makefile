@@ -12,7 +12,7 @@
 
 NAME		= libft.a
 CC 			= gcc
-CFLAGS 		= -Wall -Wextra -Werror -c
+CFLAGS 		= -Wall -Wextra -Werror
 HEAD 		= libft.h
 
 FUNCTIONS	+= ft_atoi.c
@@ -84,6 +84,19 @@ FUNCTIONS	+= ft_strlowcase.c
 FUNCTIONS	+= ft_itoa_base.c
 FUNCTIONS	+= ft_sqrt.c
 FUNCTIONS	+= get_next_line.c
+FUNCTIONS	+= ft_printf.c
+FUNCTIONS	+= ft_strjoinl.c
+FUNCTIONS	+= ft_numinstr.c
+FUNCTIONS	+= ft_uitoa_base.c
+FUNCTIONS	+= ft_ftoa.c
+FUNCTIONS	+= printf_specificator.c
+FUNCTIONS	+= printf_specificator2.c
+FUNCTIONS	+= printf_pointer.c
+FUNCTIONS	+= printf_str.c
+FUNCTIONS	+= printf_int.c
+FUNCTIONS	+= printf_float_double.c
+FUNCTIONS	+= printf_oux.c
+FUNCTIONS	+= ft_check_sign_double.c
 
 BINARY		= $(FUNCTIONS:.c=.o)
 
@@ -94,8 +107,8 @@ $(NAME): $(BINARY)
 	@ranlib $(NAME)
 	@rm -f libft.h.gch
 
-$(BINARY):
-	@$(CC) $(CFLAGS) $(FUNCTIONS) -I. $(HEAD)
+$(BINARY): $(FUNCTIONS)
+	@$(CC) -c $(CFLAGS) $(FUNCTIONS) -I. $(HEAD)
 
 clean:
 	@rm -f $(BINARY)

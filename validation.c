@@ -13,6 +13,16 @@
 #include "fdf.h"
 #include <stdio.h>
 
+void		ft_error(int i)
+{
+	if (i == 1)
+		ft_putstr("File error./n");
+	else if (i == 2)
+		ft_putstr("Not valid map\n");
+	exit (1);
+
+}
+
 static void	ft_strdeli(char **arr, size_t i)
 {
 	while (i-- > 0)
@@ -57,7 +67,8 @@ static int	ft_valid(t_point **all, char **arr, char *line)
 		(*all)->nX = (int)ft_cntwrd(line, ' ');
 	else if ((*all)->nX != (int)ft_cntwrd(line, ' '))
 	{
-		printf("Number elem in rows not constant %d/%d\n", (*all)->nX, (int)ft_cntwrd(line, ' '));
+		ft_printf("Number elem in rows not constant %d/%d\n",
+				(*all)->nX, (int)ft_cntwrd(line, ' '));
 		return (0);
 	}
 	while (i < (*all)->nX)
@@ -128,24 +139,18 @@ int			ft_map(char *file, t_point **all)
 	y = 0;
 	(*all)->nX = -1;
 	if ((fd = open(file, O_RDONLY)) < 0)
-	{
-		ft_putstr("File error./n");
-		exit(1);
-	}
-//	printf("%i\n", get_next_line(fd, &line));
+		ft_error(1);
 	while ((c = get_next_line(fd, &line)) == 1)
 	{
 		if (!(arr = ft_strsplit(line, ' ')))
 			exit(1);
 		if (!ft_valid(all, arr, line))
-		{
-			ft_putstr("Not valid map\n");
-			exit(1);
-		}
+			ft_error(2);
 		ft_adddata(all, arr, y++);
 	}
-	if (c != -1)
-		free(line);
+	if (c == -1)
+		exit (1);
+	free(line);
 	(*all)->nY = y;
 	if(!(ft_init(all)))
 		exit(1);

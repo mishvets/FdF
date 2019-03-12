@@ -80,5 +80,6 @@ void	ft_startpointX(t_point **all, int sign);
 void	ft_startpointY(t_point **all, int sign);
 void	ft_z(t_point **all, int sign);
 void	ft_case(t_point **all, int key);
+void	ft_error(int i);
 #endif
 //

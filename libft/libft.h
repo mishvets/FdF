@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   libftprintf.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mshvets <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 16:31:50 by mshvets           #+#    #+#             */
-/*   Updated: 2018/11/28 19:14:27 by mshvets          ###   ########.fr       */
+/*   Updated: 2019/02/26 19:20:46 by mshvets          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
+#ifndef LIBFTPRINTF_H
 
-# define LIBFT_H
+# define LIBFTPRINTF_H
 # define BUFF_SIZE 32
 
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
+# include <stdarg.h>
 
 typedef struct		s_list
 {
@@ -26,12 +27,31 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
-typedef struct      s_fdlst
+typedef struct		s_fdlst
+
 {
-    int             fd;
-    char            *str;
-    struct s_fdlst  *next;
-}                   t_fdlst;
+	int				fd;
+	char			*str;
+	struct s_fdlst	*next;
+}					t_fdlst;
+
+typedef struct		s_name
+{
+
+	char			flag;
+	int				width;
+	int				ident_prec;
+	int				precision;
+	char			length;
+	char			type;
+	char			obj;
+}					t_name;
+
+union				u_doub_bit
+{
+	double			d;
+	long long int	i;
+}					;
 
 void				*ft_memset(void *buf, int ch, size_t count);
 void				ft_bzero(void *buf, size_t count);
@@ -96,12 +116,32 @@ void				ft_lstaddr(t_list **alst, t_list *new);
 int					ft_isspace(char c);
 size_t				ft_cntwrd(const char *str, char c);
 void				ft_srtwrd(char **tab);
-int					ft_numlen(int n, int base);
-long int			ft_pow(int nb, unsigned int power);
+int					ft_numlen(long long int n, int base);
+long double			ft_pow(long int nb, unsigned int power);
 char				*ft_strupcase(char *str);
 char				*ft_strlowcase(char *str);
 char				*ft_itoa_base(int n, int base);
-int                 ft_sqtr(int nb);
-int                 get_next_line(const int fd, char **line);
+int					ft_sqtr(int nb);
+
+int					get_next_line(const int fd, char **line);
+
+int					ft_printf(const char *format, ...);
+char				*ft_strjoinl(char *s1, char *s2);
+int					ft_numinstr(char *str);
+char				*ft_uitoa_base(unsigned long long n, int base);
+char				*ft_ftoa(long double num, t_name spc);
+void				ft_specificator(char *str, int *cnt, t_name *spc,
+						va_list ap);
+int					ft_type(char c, t_name *spc);
+int					ft_flag(char c, t_name *spc);
+int					ft_length(char *str, t_name *spc, int *cnt);
+void				ft_precision(char *str, t_name *spc, int *cnt, va_list ap);
+void				ft_width(char *str, t_name *spc, int *cnt, va_list ap);
+char				*ft_print_di(t_name spc, va_list ap, char *str);
+char				*ft_print_f(t_name spc, va_list ap, char *str);
+char				*ft_print_p(t_name spc, va_list ap, char *str);
+char				*ft_print_str(t_name spc, va_list ap, char *str);
+char				*ft_print_uox(t_name spc, va_list ap, char *str);
+int					ft_check_sign_double(double num);
 
 #endif

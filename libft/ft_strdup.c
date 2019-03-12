@@ -19,9 +19,9 @@ char	*ft_strdup(const char *strptr)
 	size_t			len;
 
 	i = 0;
-	len = ft_strlen(strptr);
-	if (!strptr || !(new = ft_strnew(len)))
+	if (!strptr || !(new = ft_strnew(ft_strlen(strptr))))
 		return (NULL);
+	len = ft_strlen(strptr);
 	while (i <= len)
 	{
 		new[i] = strptr[i];
